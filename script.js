@@ -43,7 +43,6 @@ let direction = 1; // 1 = right, -1 = left
 let runTimer = 0;
 const hearts = [];
 const sounds = [];
-const texts = []; // floating text when running
 
 function drawFrame(frameX, frameY, x, y) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -95,19 +94,6 @@ function drawFrame(frameX, frameY, x, y) {
   // Remove expired sounds
   for (let i = sounds.length - 1; i >= 0; i--) {
     if (sounds[i].life <= 0) sounds.splice(i, 1);
-  }
-
-  // Draw floating texts
-  texts.forEach((txt) => {
-    ctx.font = "6px Arial";
-    ctx.fillStyle = "#444";
-    ctx.fillText(txt.text, txt.x, txt.y);
-    txt.y -= 0.5;
-    txt.life -= 1;
-  });
-
-  for (let i = texts.length - 1; i >= 0; i--) {
-    if (texts[i].life <= 0) texts.splice(i, 1);
   }
 }
 
