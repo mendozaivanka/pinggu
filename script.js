@@ -18,7 +18,7 @@ const animationLoops = {
   run: [0, 1, 0],
   walk: [0, 1, 2, 3, 0],
   jump: [0],
-  slide: [0, 1, 2,0],
+  slide: [0, 1, 2, 0],
   hurt: [0],
 };
 
@@ -43,7 +43,6 @@ let direction = 1; // 1 = right, -1 = left
 let runTimer = 0;
 const hearts = [];
 const sounds = [];
-const texts = []; // floating text when running
 
 function drawFrame(frameX, frameY, x, y) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -130,22 +129,11 @@ function step(timestamp) {
     }
   }
 
-  // // Trigger random run
-  // if (Date.now() - runTimer > 15000 + Math.random() * 15000) {
-  //   currentAnimation = "run";
-  //   runTimer = Date.now();
-  //   texts.push({ text: "noot noot", x: posX, y: 10, life: 40 });
-  //   setTimeout(() => {
-  //     if (currentAnimation === "run") currentAnimation = "walk";
-  //   }, 2000);
-  // }
-
   // Movement for slide
   if (currentAnimation === "slide") {
     posX += direction * 1;
     if (posX <= 0 || posX >= canvas.width - SCALED_WIDTH) direction *= -1;
   }
-
 
   // Handle loneliness
   if (Date.now() - lastInteraction > 30000) {
@@ -164,13 +152,13 @@ function updateMood() {
   const hour = now.getHours();
 
   if (hour >= 6 && hour < 11) {
-    moodText.textContent = "Good morning!!";
+    moodText.textContent = "Good morning ☀️";
   } else if (hour >= 11 && hour < 17) {
-    moodText.textContent = "I hope you have a great day!!";
+    moodText.textContent = "You can do this!! 💪🫶";
   } else if (hour >= 17 && hour < 23) {
-    moodText.textContent = "It's cake time!! 🎂";
+    moodText.textContent = "Rest is best 🥹";
   } else {
-    moodText.textContent = "I'm sleepy... but I love you 🐧💤";
+    moodText.textContent = "I love you 🐧💤";
   }
 }
 
@@ -203,7 +191,7 @@ function feedCake() {
     currentAnimation = "run";
     affection = Math.min(affection + 1, 5);
     updateHearts();
-    moodText.textContent = "kekek";
+    moodText.textContent = "kekek 🤌";
     lastInteraction = Date.now();
     setTimeout(() => {
       currentAnimation = "walk";
@@ -236,7 +224,7 @@ function cuddle() {
     hearts.push({ x: posX + 30, y: 30, life: 10 });
     affection = Math.min(affection + 1, 5);
     updateHearts();
-    moodText.textContent = "Kisses for you 💋";
+    moodText.textContent = "kisses for you 💋";
     lastInteraction = Date.now();
     setTimeout(() => {
       currentAnimation = "walk";
