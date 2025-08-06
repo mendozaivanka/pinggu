@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/images/icon.png">
+  <title>Birthday Penguin Buddy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="outer">
+  <h1 id="countdownText">Counting down to your special day...</h1>
+  <canvas id="gameCanvas" width="65" height="65"></canvas>
+
+  <div class="ui-bar">
+    <button onclick="feedCake()">🎂</button>
+    <button onclick="openGift()">🎁</button>
+    <button onclick="cuddle()">🧸</button>
+    <div class="hearts" id="heartMeter">❤️❤️❤️❤️❤️</div>
+  </div>
+
+  <p id="moodText">Loading...</p>
+
+  <script src="script.js"></script>
+
+  <div id="deathScreen" class="hidden">
+  <div class="message">
+    <p>💀 Penguin has passed away...</p>
+    <p>Refresh the page to start over.</p>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
