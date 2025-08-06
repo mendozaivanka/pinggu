@@ -18,7 +18,7 @@ const animationLoops = {
   run: [0, 1, 0],
   walk: [0, 1, 2, 3, 0],
   jump: [0],
-  slide: [0, 1, 2, 0],
+  slide: [0, 1, 2,0],
   hurt: [0],
 };
 
@@ -236,7 +236,7 @@ function cuddle() {
     hearts.push({ x: posX + 30, y: 30, life: 10 });
     affection = Math.min(affection + 1, 5);
     updateHearts();
-    moodText.textContent = "kisses for you 💋";
+    moodText.textContent = "Kisses for you 💋";
     lastInteraction = Date.now();
     setTimeout(() => {
       currentAnimation = "walk";
