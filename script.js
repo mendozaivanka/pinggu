@@ -44,6 +44,9 @@ let runTimer = 0;
 const hearts = [];
 const sounds = [];
 
+setInterval(updateCountdown, 1000);
+updateCountdown(); // Initial call
+
 function drawFrame(frameX, frameY, x, y) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.save();
@@ -116,16 +119,6 @@ function step(timestamp) {
     }
   }
 
-  // // Trigger random run
-  // if (Date.now() - runTimer > 15000 + Math.random() * 15000) {
-  //   currentAnimation = "run";
-  //   runTimer = Date.now();
-  //   texts.push({ text: "noot noot", x: posX, y: 10, life: 40 });
-  //   setTimeout(() => {
-  //     if (currentAnimation === "run") currentAnimation = "walk";
-  //   }, 2000);
-  // }
-
   // Movement for slide
   if (currentAnimation === "slide") {
     posX += direction * 1;
@@ -150,29 +143,52 @@ function updateMood() {
   const hour = now.getHours();
 
   if (hour >= 6 && hour < 11) {
-    moodText.textContent = "Good morning!!";
+    moodText.textContent = "Good morning ☀️";
   } else if (hour >= 11 && hour < 17) {
-    moodText.textContent = "I hope you have a great day!!";
+    moodText.textContent = "You can do this!! 💪";
   } else if (hour >= 17 && hour < 23) {
-    moodText.textContent = "It's cake time!! 🎂";
+    moodText.textContent = "Time to rest 😌🎮";
   } else {
     moodText.textContent = "I'm sleepy... but I love you 🐧💤";
   }
 }
 
-function updateCountdown() {
-  const today = new Date();
-  const birthday = new Date(today.getFullYear(), 7, 20);
-  if (today > birthday) birthday.setFullYear(today.getFullYear() + 1);
+// function updateCountdown() {
+//   const today = new Date();
+//   const birthday = new Date(today.getFullYear(), 7, 20);
+//   if (today > birthday) birthday.setFullYear(today.getFullYear() + 1);
 
-  const diffTime = birthday - today;
-  const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+//   const diffTime = birthday - today;
+//   const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+//   const countdownText = document.getElementById("countdownText");
+//   countdownText.textContent =
+//     daysLeft === 0
+//       ? "🎂 It's your birthday today!! 🎉"
+//       : `🎈 ${daysLeft} day${daysLeft > 1 ? "s" : ""} until your special day!`;
+// }
+
+function updateCountdown() {
+  const now = new Date();
+  const birthday = new Date(now.getFullYear(), 7, 20);
+
+  if (now > birthday) birthday.setFullYear(now.getFullYear() + 1);
+
+  const diffTime = birthday - now;
+
+  const seconds = Math.floor((diffTime / 1000) % 60);
+  const minutes = Math.floor((diffTime / 1000 / 60) % 60);
+  const hours = Math.floor((diffTime / (1000 * 60 * 60)) % 24);
+  const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+  const format = (num) => String(num).padStart(2, "0");
+
   const countdownText = document.getElementById("countdownText");
   countdownText.textContent =
-    daysLeft === 0
+    diffTime <= 0
       ? "🎂 It's your birthday today!! 🎉"
-      : `🎈 ${daysLeft} day${daysLeft > 1 ? "s" : ""} until your special day!`;
+      : `🎈 ${days}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s \n left!`;
 }
+
 
 function updateHearts() {
   heartMeter.textContent = "❤️".repeat(affection);
@@ -205,7 +221,7 @@ function openGift() {
     currentAnimation = "slide";
     affection = Math.min(affection + 1, 5);
     updateHearts();
-    moodText.textContent = "forced to work, born to dilly dally 🐧”";
+    moodText.textContent = "forced to work, born to dilly dally🐧";
     lastInteraction = Date.now();
     setTimeout(() => {
       currentAnimation = "walk";
@@ -222,7 +238,7 @@ function cuddle() {
     hearts.push({ x: posX + 30, y: 30, life: 10 });
     affection = Math.min(affection + 1, 5);
     updateHearts();
-    moodText.textContent = "Kisses for you 💋";
+    moodText.textContent = "24 looks goog on u 💋";
     lastInteraction = Date.now();
     setTimeout(() => {
       currentAnimation = "walk";

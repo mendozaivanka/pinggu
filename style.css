@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: auto;
   font-family: 'Pixelify Sans', sans-serif;
   display: flex;
   flex-direction: column;
@@ -8,6 +8,7 @@ body {
   height: 100vh;
   overflow: hidden;
   text-align: center;
+  background-color: #99b7e1;
 }
 
 h1 {
@@ -41,7 +42,7 @@ canvas {
   padding: 10px 16px;
   border: none;
   border-radius: 10px;
-  background-color: white;
+  background-color: #99b7e1;
   color: white;
   cursor: pointer;
 }
@@ -51,18 +52,18 @@ canvas {
 }
 
 .hearts {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   margin-top: 10px;
 }
 
 #moodText {
   font-size: 1.1rem;
   margin-top: 15px;
-  color: #f5f9fb;
+  color: #3a3114;
 }
 
 #countdownText {
-  color: #f5f9fb
+  color: #3a3114
 }
 #deathScreen {
   position: absolute;
@@ -88,7 +89,7 @@ canvas {
 }
 
 #outer {
-  background-color: #99b7e1;
+  background-color: #f5f9fb;
   padding: 0.5%;
   border-radius: 15px;
 }

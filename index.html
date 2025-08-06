@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/x-icon" href="/images/icon.png">
+  <link rel="icon" type="image/x-icon" href="/images/icon.ico">
   <title>Pinggu</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -14,12 +14,11 @@
   <div id="outer">
   <h1 id="countdownText">Counting down to your special day...</h1>
   <canvas id="gameCanvas" width="65" height="65"></canvas>
-
+  <div class="hearts" id="heartMeter">❤️❤️❤️❤️❤️</div>
   <div class="ui-bar">
     <button onclick="feedCake()">🎂</button>
     <button onclick="openGift()">🎁</button>
     <button onclick="cuddle()">🧸</button>
-    <div class="hearts" id="heartMeter">❤️❤️❤️❤️❤️</div>
   </div>
 
   <p id="moodText">Loading...</p>
@@ -33,6 +32,5 @@
   </div>
 </div>
 </div>
-
 </body>
 </html>
